@@ -36,7 +36,8 @@ Server::Server(QWidget* parent)
 
     connect(&tcpServer, &QTcpServer::newConnection,
                 this, &Server::acceptConnection);
-    if (!tcpServer.listen(QHostInfo(), 6666)) {
+    if (!tcpServer.listen(QHostAddress::LocalHost, 6666)) {
+ // if (!tcpServer.listen(QHostAddress("127.0.0.1"), 6666)) {
         qDebug() << tcpServer.errorString();
         close();
         return;
