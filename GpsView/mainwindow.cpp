@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    cam     = NULL;
+    timer   = new QTimer(this);
+    imag    = new QImage();         // 初始化
+
     server_ = new Ui::Server(this);
     dock_server_ = new QDockWidget("Info", this);
     dock_server_->setWidget(server_);
@@ -29,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->webView->load(QUrl("https://hao.360.cn/?wd_xp1"));
     ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("MainWindow", this);
 
-    timer = new QTimer(this);
+    timer_1 = new QTimer(this);
 
        timer->start(100);
 
@@ -37,6 +41,15 @@ MainWindow::MainWindow(QWidget *parent) :
    //
     timer_2->start(1000);
 
+
+
+    cam = cvCreateCameraCapture(2);//打开摄像头，从摄像头中获取视频
+
+    timer->start(33);              // 开始计时，超时则发出timeout()信号
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(readFarme()));  // 时间到，读取当前摄像头信息
+   // connect(ui->pic, SIGNAL(clicked()), this, SLOT(takingPictures()));
+    //connect(ui->closeCam, SIGNAL(clicked()), this, SLOT(closeCamara()));
 }
 
 MainWindow::~MainWindow()
@@ -64,7 +77,7 @@ void MainWindow::QtTest()
 
 void MainWindow::on_pushButton_clicked()
 {
-    connect(timer,SIGNAL(timeout()),this,SLOT(timeCountsFunction()));
+    connect(timer_1,SIGNAL(timeout()),this,SLOT(timeCountsFunction()));
     connect(timer_2,SIGNAL(timeout()),this,SLOT(callJava()));
 }
 
@@ -79,4 +92,40 @@ void MainWindow::callJava()
     ui->webView->page()->mainFrame()->evaluateJavaScript(strJs);
 
     qDebug() << "\n->" <<strJs;
+}
+
+
+
+/*********************************
+********* 读取摄像头信息 ***********
+**********************************/
+void MainWindow::readFarme()
+{
+    frame = cvQueryFrame(cam);// 从摄像头中抓取并返回每一帧
+    // 将抓取到的帧，转换为QImage格式。QImage::Format_RGB888不同的摄像头用不同的格式。
+    QImage image = QImage((const uchar*)frame->imageData, frame->width, frame->height, QImage::Format_RGB888).rgbSwapped();
+    ui->label_3->setPixmap(QPixmap::fromImage(image));  // 将图片显示到label上
+}
+
+/*************************
+********* 拍照 ***********
+**************************/
+void MainWindow::takingPictures()
+{
+    frame = cvQueryFrame(cam);// 从摄像头中抓取并返回每一帧
+
+    // 将抓取到的帧，转换为QImage格式。QImage::Format_RGB888不同的摄像头用不同的格式。
+    QImage image = QImage((const uchar*)frame->imageData, frame->width, frame->height, QImage::Format_RGB888).rgbSwapped();
+
+    ui->label_2->setPixmap(QPixmap::fromImage(image));  // 将图片显示到label上
+}
+
+/*******************************
+***关闭摄像头，释放资源，必须释放***
+********************************/
+void MainWindow::closeCamara()
+{
+    timer->stop();         // 停止读取数据。
+
+    cvReleaseCapture(&cam);//释放内存；
 }

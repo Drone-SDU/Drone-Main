@@ -26,3 +26,9 @@ DESTDIR  = $$PWD/bin
 
 RESOURCES += \
     resource.qrc
+
+INCLUDEPATH += /usr/include/opencv2 \
+                /usr/include/opencv
+
+LIBS            += /usr/lib/x86_64-linux-gnu/libopencv_highgui.so \
+                    /usr/lib/x86_64-linux-gnu/libopencv_core.so

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>964</width>
+    <width>1062</width>
     <height>439</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
        <number>1</number>
       </property>
       <property name="text">
-       <string>                                                 TextLabel                                                  </string>
+       <string>                                                                                                              </string>
       </property>
      </widget>
     </item>
@@ -189,8 +189,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>964</width>
-     <height>22</height>
+     <width>1062</width>
+     <height>30</height>
     </rect>
    </property>
   </widget>
