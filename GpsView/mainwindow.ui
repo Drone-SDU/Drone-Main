@@ -27,7 +27,7 @@
        <number>1</number>
       </property>
       <property name="text">
-       <string>                                                                                                              </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -37,16 +37,7 @@
        <string>Map</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="1" colspan="6">
-        <widget class="QWebView" name="webView">
-         <property name="url">
-          <url>
-           <string>about:blank</string>
-          </url>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" colspan="6">
+       <item row="1" column="1" colspan="4">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>GPS Data</string>
@@ -104,7 +95,7 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="5">
+       <item row="2" column="3">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLabel" name="label_10">
@@ -154,7 +145,7 @@
          </item>
         </layout>
        </item>
-       <item row="2" column="3">
+       <item row="2" column="2">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
           <widget class="QLabel" name="label_8">
@@ -179,6 +170,9 @@
          </item>
         </layout>
        </item>
+       <item row="0" column="1" colspan="4">
+        <widget class="QWebEngineView" name="webView" native="true"/>
+       </item>
       </layout>
      </widget>
     </item>
@@ -190,7 +184,7 @@
      <x>0</x>
      <y>0</y>
      <width>1062</width>
-     <height>30</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
@@ -207,9 +201,10 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QWebView</class>
+   <class>QWebEngineView</class>
    <extends>QWidget</extends>
-   <header>QtWebKitWidgets/QWebView</header>
+   <header>qwebengineview.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
