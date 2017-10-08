@@ -3,8 +3,8 @@
 # Project created by QtCreator 2016-09-28T14:10:29
 #
 #-------------------------------------------------
-# webkitwidgets
-QT += core gui webenginewidgets
+
+QT       += core gui webkitwidgets
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,9 +27,8 @@ DESTDIR  = $$PWD/bin
 RESOURCES += \
     resource.qrc
 
-INCLUDEPATH += /usr/local/include/opencv2 \
-                /usr/local/include/opencv
+INCLUDEPATH += /usr/include/opencv2 \
+                /usr/include/opencv
 
-LIBS            += /usr/local/lib/libopencv_highgui.so \
-                    /usr/local/lib/libopencv_core.so \
-                     /usr/local/lib/libopencv_videoio.so
+LIBS            += /usr/lib/x86_64-linux-gnu/libopencv_highgui.so \
+                    /usr/lib/x86_64-linux-gnu/libopencv_core.so

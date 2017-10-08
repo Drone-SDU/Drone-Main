@@ -2,9 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QApplication>
-#include <QWebEnginePage>
-#include <QWebEngineView>
-#include <QWebChannel>
+#include <QWebFrame>
 #include <QDebug>
 
 
@@ -16,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    cam     = NULL;
     timer   = new QTimer(this);
     imag    = new QImage();         // 初始化
 
@@ -29,23 +29,27 @@ MainWindow::MainWindow(QWidget *parent) :
     strPath += qApp->applicationDirPath();
     strPath += "/index.html";
     qDebug() << strPath;
-    QWebChannel *channel = new QWebChannel(this);
-    channel->registerObject("MainWindow", this);
-    ui->webView->page()->setWebChannel(channel);
-    ui->webView->page()->load(QUrl(strPath));
+    ui->webView->load(QUrl(strPath));
+//    ui->webView->load(QUrl("https://hao.360.cn/?wd_xp1"));
+    ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("MainWindow", this);
 
     timer_1 = new QTimer(this);
-    timer->start(100);
+
+       timer->start(100);
 
     timer_2 = new QTimer(this);
+   //
     timer_2->start(1000);
 
-    cam = cv::VideoCapture(2);//打开摄像头，从摄像头中获取视频
-    if(!cam.isOpened())
-        std::cerr << "Can't open camera!" <<std::endl;;
+
+
+    cam = cvCreateCameraCapture(2);//打开摄像头，从摄像头中获取视频
 
     timer->start(33);              // 开始计时，超时则发出timeout()信号
+
     connect(timer, SIGNAL(timeout()), this, SLOT(readFarme()));  // 时间到，读取当前摄像头信息
+   // connect(ui->pic, SIGNAL(clicked()), this, SLOT(takingPictures()));
+    //connect(ui->closeCam, SIGNAL(clicked()), this, SLOT(closeCamara()));
 }
 
 MainWindow::~MainWindow()
@@ -85,19 +89,35 @@ void MainWindow::callJava()
     QString strJs = strJs_
             .arg(ui->lineEditLng->text().toDouble()*0.01+116)
             .arg(ui->lineEditLat->text().toDouble()*0.01+29);
-    ui->webView->page()->runJavaScript(strJs);
+    ui->webView->page()->mainFrame()->evaluateJavaScript(strJs);
+
     qDebug() << "\n->" <<strJs;
 }
+
+
 
 /*********************************
 ********* 读取摄像头信息 ***********
 **********************************/
 void MainWindow::readFarme()
 {
-    cam >> frame;// 从摄像头中抓取并返回每一帧
+    frame = cvQueryFrame(cam);// 从摄像头中抓取并返回每一帧
     // 将抓取到的帧，转换为QImage格式。QImage::Format_RGB888不同的摄像头用不同的格式。
-    QImage image = QImage(frame.data, frame.cols, frame.rows, static_cast<int>(frame.step), QImage::Format_RGB888).rgbSwapped();
+    QImage image = QImage((const uchar*)frame->imageData, frame->width, frame->height, QImage::Format_RGB888).rgbSwapped();
     ui->label_3->setPixmap(QPixmap::fromImage(image));  // 将图片显示到label上
+}
+
+/*************************
+********* 拍照 ***********
+**************************/
+void MainWindow::takingPictures()
+{
+    frame = cvQueryFrame(cam);// 从摄像头中抓取并返回每一帧
+
+    // 将抓取到的帧，转换为QImage格式。QImage::Format_RGB888不同的摄像头用不同的格式。
+    QImage image = QImage((const uchar*)frame->imageData, frame->width, frame->height, QImage::Format_RGB888).rgbSwapped();
+
+    ui->label_2->setPixmap(QPixmap::fromImage(image));  // 将图片显示到label上
 }
 
 /*******************************
@@ -106,5 +126,6 @@ void MainWindow::readFarme()
 void MainWindow::closeCamara()
 {
     timer->stop();         // 停止读取数据。
-    cam.release();//释放内存；
+
+    cvReleaseCapture(&cam);//释放内存；
 }
