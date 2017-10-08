@@ -3,6 +3,7 @@ build-GpsView-Desktop_Qt_5_9_1_clang_64bit-Debug/
 
 !colmap-master/
 !GpsView/
+!meshlab v2016.12/
 meshlab v2016.12/meshlab/build-meshlab_mini-Desktop_Qt_5_9_1_clang_64bit-Debug
 meshlab v2016.12/meshlab/build-meshlab_mini-Desktop_Qt_5_9_1_clang_64bit-Release
 !README.md
