@@ -1,8 +1,8 @@
+#-------------------------------------------------
+#
 # Project created by QtCreator 2016-09-28T14:10:29
 #
 #-------------------------------------------------
-
-# webkitwidgets
 # webkitwidgets
 QT += core gui webenginewidgets
 QT += network
@@ -12,8 +12,6 @@ TARGET = GpsView
 TEMPLATE = app
 
 
-RESOURCES += \
-    resource.qrc
 SOURCES += main.cpp\
         mainwindow.cpp \
     server.cpp
@@ -26,14 +24,15 @@ FORMS    += mainwindow.ui
 
 DESTDIR  = $$PWD/bin
 
+RESOURCES += \
+    resource.qrc
 
 #INCLUDEPATH += /usr/include/opencv2 \
 #                /usr/include/opencv
-INCLUDEPATH += /usr/local/include/opencv2 \
-                /usr/local/include/opencv
+INCLUDEPATH += /usr/local/include
 
 #LIBS            += /usr/lib/x86_64-linux-gnu/libopencv_highgui.so \
 #                    /usr/lib/x86_64-linux-gnu/libopencv_core.so
-LIBS            += /usr/local/lib/libopencv_highgui.so \
-                    /usr/local/lib/libopencv_core.so \
-                     /usr/local/lib/libopencv_videoio.so
+LIBS            += /usr/local/lib/libopencv_highgui.dylib \
+                    /usr/local/lib/libopencv_core.dylib \
+                     /usr/local/lib/libopencv_video.dylib

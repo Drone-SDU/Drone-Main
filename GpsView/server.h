@@ -37,8 +37,12 @@ private:
     QTextEdit *textEdit;
     QJsonObject getJsonObjectFromString(const QString jsonString);
 
+    QCheckBox *ifHostIp;
+    QLineEdit *setIpAddress;
 
 
+    void responseToCheckBox();
+    void startListening();
     void updateServerProgress();
     void acceptConnection();
     void clear();

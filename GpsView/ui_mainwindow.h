@@ -24,8 +24,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "qwebengineview.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -58,7 +58,7 @@ public:
     QLabel *label_8;
     QLabel *VelV;
     QLabel *label_12;
-    QVBoxLayout *verticalLayout_2;
+    QWebEngineView *webView;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -194,11 +194,10 @@ public:
 
         gridLayout_2->addLayout(horizontalLayout_8, 2, 2, 1, 1);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        webView = new QWebEngineView(groupBox_3);
+        webView->setObjectName(QStringLiteral("webView"));
 
-        gridLayout_2->addLayout(verticalLayout_2, 0, 1, 1, 1);
+        gridLayout_2->addWidget(webView, 0, 1, 1, 4);
 
 
         horizontalLayout_3->addWidget(groupBox_3);
@@ -206,7 +205,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1062, 22));
+        menuBar->setGeometry(QRect(0, 0, 1062, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

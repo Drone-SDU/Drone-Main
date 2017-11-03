@@ -15,7 +15,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I/usr/local/include/opencv2 -I/usr/local/include/opencv -I../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtQuick.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtGui.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtQml.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../qt5.9/5.9.1/clang_64/mkspecs/macx-clang -F/Users/fanyue/qt5.9/5.9.1/clang_64/lib
+INCPATH       = -I. -I/usr/local/include -I../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtQuick.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtGui.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtQml.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../qt5.9/5.9.1/clang_64/mkspecs/macx-clang -F/Users/fanyue/qt5.9/5.9.1/clang_64/lib
 QMAKE         = /Users/fanyue/qt5.9/5.9.1/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = GpsView1.0.0
 DISTDIR = /Users/fanyue/Downloads/Drone-Main/GpsView/.tmp/GpsView1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/fanyue/qt5.9/5.9.1/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/fanyue/qt5.9/5.9.1/clang_64/lib /usr/local/lib/libopencv_highgui.so /usr/local/lib/libopencv_core.so /usr/local/lib/libopencv_videoio.so -framework QtWebEngineWidgets -framework QtWebEngineCore -framework QtQuick -framework QtQml -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework QtGui -framework QtWebChannel -framework QtPositioning -framework QtPrintSupport -framework QtWidgets -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/fanyue/qt5.9/5.9.1/clang_64/lib /usr/local/lib/libopencv_highgui.dylib /usr/local/lib/libopencv_core.dylib /usr/local/lib/libopencv_video.dylib -framework QtWebEngineWidgets -framework QtWebEngineCore -framework QtQuick -framework QtQml -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework QtGui -framework QtWebChannel -framework QtPositioning -framework QtPrintSupport -framework QtWidgets -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -742,6 +742,8 @@ moc_mainwindow.cpp: ../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Header
 		../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/QTime \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
 		server.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/QAbstractSocket \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
@@ -919,12 +921,38 @@ moc_mainwindow.cpp: ../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Header
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/usr/local/include/opencv/highgui.h \
-		/usr/local/include/opencv/cv.h \
+		/usr/local/include/opencv2/highgui/highgui.hpp \
+		/usr/local/include/opencv2/core/core.hpp \
+		/usr/local/include/opencv2/core/types_c.h \
+		/usr/local/include/opencv2/core/version.hpp \
+		/usr/local/include/opencv2/core/operations.hpp \
+		/usr/local/include/opencv2/core/mat.hpp \
+		/usr/local/include/opencv2/highgui/highgui_c.h \
+		/usr/local/include/opencv2/core/core_c.h \
+		/usr/local/include/opencv2/opencv.hpp \
+		/usr/local/include/opencv2/flann/miniflann.hpp \
+		/usr/local/include/opencv2/flann/defines.h \
+		/usr/local/include/opencv2/flann/config.h \
+		/usr/local/include/opencv2/imgproc/imgproc_c.h \
+		/usr/local/include/opencv2/imgproc/types_c.h \
+		/usr/local/include/opencv2/imgproc/imgproc.hpp \
+		/usr/local/include/opencv2/photo/photo.hpp \
+		/usr/local/include/opencv2/photo/photo_c.h \
+		/usr/local/include/opencv2/video/video.hpp \
+		/usr/local/include/opencv2/video/tracking.hpp \
+		/usr/local/include/opencv2/video/background_segm.hpp \
+		/usr/local/include/opencv2/features2d/features2d.hpp \
+		/usr/local/include/opencv2/objdetect/objdetect.hpp \
+		/usr/local/include/opencv2/calib3d/calib3d.hpp \
+		/usr/local/include/opencv2/core/affine.hpp \
+		/usr/local/include/opencv2/ml/ml.hpp \
+		/usr/local/include/opencv2/contrib/contrib.hpp \
+		/usr/local/include/opencv2/contrib/retina.hpp \
+		/usr/local/include/opencv2/contrib/openfabmap.hpp \
 		mainwindow.h \
 		moc_predefs.h \
 		../../../qt5.9/5.9.1/clang_64/bin/moc
-	/Users/fanyue/qt5.9/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/fanyue/qt5.9/5.9.1/clang_64/mkspecs/macx-clang -I/Users/fanyue/Downloads/Drone-Main/GpsView -I/usr/local/include/opencv2 -I/usr/local/include/opencv -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/fanyue/qt5.9/5.9.1/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
+	/Users/fanyue/qt5.9/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/fanyue/qt5.9/5.9.1/clang_64/mkspecs/macx-clang -I/Users/fanyue/Downloads/Drone-Main/GpsView -I/usr/local/include -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/fanyue/qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/fanyue/qt5.9/5.9.1/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -932,7 +960,8 @@ compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: mainwindow.ui \
-		../../../qt5.9/5.9.1/clang_64/bin/uic
+		../../../qt5.9/5.9.1/clang_64/bin/uic \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h
 	/Users/fanyue/qt5.9/5.9.1/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
 
 compiler_rez_source_make_all:
@@ -954,6 +983,8 @@ main.o: main.cpp mainwindow.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/QTime \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
 		server.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/QAbstractSocket \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
@@ -1131,8 +1162,34 @@ main.o: main.cpp mainwindow.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/usr/local/include/opencv/highgui.h \
-		/usr/local/include/opencv/cv.h \
+		/usr/local/include/opencv2/highgui/highgui.hpp \
+		/usr/local/include/opencv2/core/core.hpp \
+		/usr/local/include/opencv2/core/types_c.h \
+		/usr/local/include/opencv2/core/version.hpp \
+		/usr/local/include/opencv2/core/operations.hpp \
+		/usr/local/include/opencv2/core/mat.hpp \
+		/usr/local/include/opencv2/highgui/highgui_c.h \
+		/usr/local/include/opencv2/core/core_c.h \
+		/usr/local/include/opencv2/opencv.hpp \
+		/usr/local/include/opencv2/flann/miniflann.hpp \
+		/usr/local/include/opencv2/flann/defines.h \
+		/usr/local/include/opencv2/flann/config.h \
+		/usr/local/include/opencv2/imgproc/imgproc_c.h \
+		/usr/local/include/opencv2/imgproc/types_c.h \
+		/usr/local/include/opencv2/imgproc/imgproc.hpp \
+		/usr/local/include/opencv2/photo/photo.hpp \
+		/usr/local/include/opencv2/photo/photo_c.h \
+		/usr/local/include/opencv2/video/video.hpp \
+		/usr/local/include/opencv2/video/tracking.hpp \
+		/usr/local/include/opencv2/video/background_segm.hpp \
+		/usr/local/include/opencv2/features2d/features2d.hpp \
+		/usr/local/include/opencv2/objdetect/objdetect.hpp \
+		/usr/local/include/opencv2/calib3d/calib3d.hpp \
+		/usr/local/include/opencv2/core/affine.hpp \
+		/usr/local/include/opencv2/ml/ml.hpp \
+		/usr/local/include/opencv2/contrib/contrib.hpp \
+		/usr/local/include/opencv2/contrib/retina.hpp \
+		/usr/local/include/opencv2/contrib/openfabmap.hpp \
 		../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QApplication
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -1143,6 +1200,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/QTime \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
 		server.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/QAbstractSocket \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
@@ -1320,10 +1379,40 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
-		/usr/local/include/opencv/highgui.h \
-		/usr/local/include/opencv/cv.h \
+		/usr/local/include/opencv2/highgui/highgui.hpp \
+		/usr/local/include/opencv2/core/core.hpp \
+		/usr/local/include/opencv2/core/types_c.h \
+		/usr/local/include/opencv2/core/version.hpp \
+		/usr/local/include/opencv2/core/operations.hpp \
+		/usr/local/include/opencv2/core/mat.hpp \
+		/usr/local/include/opencv2/highgui/highgui_c.h \
+		/usr/local/include/opencv2/core/core_c.h \
+		/usr/local/include/opencv2/opencv.hpp \
+		/usr/local/include/opencv2/flann/miniflann.hpp \
+		/usr/local/include/opencv2/flann/defines.h \
+		/usr/local/include/opencv2/flann/config.h \
+		/usr/local/include/opencv2/imgproc/imgproc_c.h \
+		/usr/local/include/opencv2/imgproc/types_c.h \
+		/usr/local/include/opencv2/imgproc/imgproc.hpp \
+		/usr/local/include/opencv2/photo/photo.hpp \
+		/usr/local/include/opencv2/photo/photo_c.h \
+		/usr/local/include/opencv2/video/video.hpp \
+		/usr/local/include/opencv2/video/tracking.hpp \
+		/usr/local/include/opencv2/video/background_segm.hpp \
+		/usr/local/include/opencv2/features2d/features2d.hpp \
+		/usr/local/include/opencv2/objdetect/objdetect.hpp \
+		/usr/local/include/opencv2/calib3d/calib3d.hpp \
+		/usr/local/include/opencv2/core/affine.hpp \
+		/usr/local/include/opencv2/ml/ml.hpp \
+		/usr/local/include/opencv2/contrib/contrib.hpp \
+		/usr/local/include/opencv2/contrib/retina.hpp \
+		/usr/local/include/opencv2/contrib/openfabmap.hpp \
 		ui_mainwindow.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEnginePage \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebenginepage.h \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebChannel.framework/Headers/QWebChannel \
+		../../../qt5.9/5.9.1/clang_64/lib/QtWebChannel.framework/Headers/qwebchannel.h \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../../qt5.9/5.9.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
