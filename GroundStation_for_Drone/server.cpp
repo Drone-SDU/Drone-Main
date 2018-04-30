@@ -13,34 +13,38 @@ Server::Server(QWidget* parent)
     QGridLayout* grid = new QGridLayout(this);
         grid->setContentsMargins(5, 10, 5, 5);
 
-        QHBoxLayout* left_button_layout = new QHBoxLayout();
+        QHBoxLayout* upper_button_layout = new QHBoxLayout();
 
-        QPushButton* save_log_button = new QPushButton(tr("Save"), this);
-       // connect(save_log_button, &QPushButton::released, this, &LogWidget::SaveLog);
-        left_button_layout->addWidget(save_log_button);
+        setIpAddress = new QLineEdit();
+        upper_button_layout->addWidget(setIpAddress);
+
+        ifHostIp = new QCheckBox(tr("Host IP"),this);
+        upper_button_layout->addWidget(ifHostIp);
+        connect(ifHostIp, &QCheckBox::stateChanged, this, &Server::responseToCheckBox);
+
+
+        QHBoxLayout* lower_button_layout = new QHBoxLayout();
+
+        QPushButton* save_log_button = new QPushButton(tr("listen"), this);
+        connect(save_log_button, &QPushButton::released, this, &Server::startListening);
+        lower_button_layout->addWidget(save_log_button);
 
         QPushButton* clear_button = new QPushButton(tr("Clear"), this);
         connect(clear_button, &QPushButton::released, this, &Server::clear);
-        left_button_layout->addWidget(clear_button);
+        lower_button_layout->addWidget(clear_button);
 
-        grid->addLayout(left_button_layout, 0, 0, Qt::AlignLeft);
+        grid->addLayout(lower_button_layout, 1, 0, Qt::AlignLeft);
 
-        QHBoxLayout* right_button_layout = new QHBoxLayout();
-
-        grid->addLayout(right_button_layout, 0, 1, Qt::AlignRight);
+        grid->addLayout(upper_button_layout, 0, 0, Qt::AlignLeft);
 
         textEdit = new QTextEdit(this);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setReadOnly(true);
-        grid->addWidget(textEdit, 1, 0, 1, 2);
+        grid->addWidget(textEdit, 2, 0, 1, 2);
 
-    connect(&tcpServer, &QTcpServer::newConnection,
+        connect(&tcpServer, &QTcpServer::newConnection,
                 this, &Server::acceptConnection);
-    if (!tcpServer.listen(QHostAddress("192.168.40.180"), 6666)) {
-        qDebug() << tcpServer.errorString();
-        close();
-        return;
-    }
+
 
     totalBytes = 0;
 
@@ -48,6 +52,32 @@ Server::Server(QWidget* parent)
 
 void Server::clear(){
     textEdit->clear();
+}
+
+void Server::responseToCheckBox()
+{
+    if(ifHostIp->checkState() == Qt ::Unchecked)
+    {
+        setIpAddress->clear();
+        setIpAddress->setEnabled(true);
+    }
+    else
+    {
+        setIpAddress->setText(tr("127.0.0.1"));
+        setIpAddress->setEnabled(false);
+    }
+
+
+}
+
+void Server::startListening()
+{
+    //   if (!tcpServer.listen(QHostAddress::LocalHost, 6666)) {
+     if (!tcpServer.listen(QHostAddress(setIpAddress->text()), 6666)) {
+           qDebug() << tcpServer.errorString();
+           close();
+           return;
+       }
 }
 
 void Server::acceptConnection()

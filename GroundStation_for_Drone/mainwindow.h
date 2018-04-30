@@ -2,15 +2,22 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QWidget>
 #include <QTime>
+#include <QWebEngineView>
+#include <QWebEnginePage>
+#include <QWebChannel>
 #include "server.h"
 
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/video/video.hpp>
+
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 class Server;
-
 }
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -31,8 +38,19 @@ private:
     Ui::Server *server_;
     QDockWidget* dock_server_;
 
-    QTimer* timer;
+    QTimer* timer_1;
     QTimer* timer_2;
+
+
+private slots:
+    void readFarme();       // 读取当前帧信息
+    void closeCamara();     // 关闭摄像头。
+
+private:
+    QTimer    *timer;
+    QImage    *imag;
+    cv::VideoCapture cam;
+    cv::Mat  frame;
 };
 
 #endif // MAINWINDOW_H

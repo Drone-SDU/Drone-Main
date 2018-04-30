@@ -21,7 +21,6 @@ class MainWindow;
 
 class Server : public QWidget
 {
-
 public:
     Server(QWidget* parent);
     QJsonObject json, jsonGPS, jsonGimbal, jsonBattery;
@@ -37,8 +36,12 @@ private:
     QTextEdit *textEdit;
     QJsonObject getJsonObjectFromString(const QString jsonString);
 
+    QCheckBox *ifHostIp;
+    QLineEdit *setIpAddress;
 
 
+    void responseToCheckBox();
+    void startListening();
     void updateServerProgress();
     void acceptConnection();
     void clear();
