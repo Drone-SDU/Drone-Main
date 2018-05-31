@@ -15,17 +15,17 @@ Server::Server(QWidget* parent)
 
         QHBoxLayout* upper_button_layout = new QHBoxLayout();
 
-        setIpAddress = new QLineEdit();
-        upper_button_layout->addWidget(setIpAddress);
-
-        ifHostIp = new QCheckBox(tr("Host IP"),this);
-        upper_button_layout->addWidget(ifHostIp);
-        connect(ifHostIp, &QCheckBox::stateChanged, this, &Server::responseToCheckBox);
+        // No more need the QLine to set ip for server. (because of the QHostAddress::Any)
+//        setIpAddress = new QLineEdit();
+//        upper_button_layout->addWidget(setIpAddress);
+//        ifHostIp = new QCheckBox(tr("Host IP"),this);
+//        upper_button_layout->addWidget(ifHostIp);
+//        connect(ifHostIp, &QCheckBox::stateChanged, this, &Server::responseToCheckBox);
 
 
         QHBoxLayout* lower_button_layout = new QHBoxLayout();
 
-        QPushButton* save_log_button = new QPushButton(tr("listen"), this);
+        QPushButton* save_log_button = new QPushButton(tr("Start listen"), this);
         connect(save_log_button, &QPushButton::released, this, &Server::startListening);
         lower_button_layout->addWidget(save_log_button);
 
@@ -44,8 +44,6 @@ Server::Server(QWidget* parent)
 
         connect(&tcpServer, &QTcpServer::newConnection,
                 this, &Server::acceptConnection);
-
-
     totalBytes = 0;
 
 }
@@ -73,7 +71,8 @@ void Server::responseToCheckBox()
 void Server::startListening()
 {
     //   if (!tcpServer.listen(QHostAddress::LocalHost, 6666)) {
-     if (!tcpServer.listen(QHostAddress(setIpAddress->text()), 6666)) {
+    // With QHostAddress::Any, the server will listens to any client that sending message to the server.
+     if (!tcpServer.listen(QHostAddress::Any, 6666)) {
            qDebug() << tcpServer.errorString();
            close();
            return;
